@@ -1,0 +1,1098 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: black;
+    color: white;
+    padding: 10px 40px;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    font-size: 100%;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.nav-links a.active, .nav-links a:hover {
+    text-decoration: underline;
+}
+
+.login-btn {
+    background: none;
+    border: 2px solid white;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    background: url("../images/pexels-mikebirdy-120049.jpg") no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+}
+
+.hero-content {
+    position: relative;
+    color: white;
+    z-index: 1;
+}
+
+.hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.btn {
+    background: white;
+    color: black;
+    padding: 10px 20px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+/* About Us Page */
+.about-hero {
+    position: relative;
+    height: 100vh;
+    background: url("../images/pexels-mikebirdy-120049.jpg") no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.about-content {
+    position: relative;
+    z-index: 1;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 900px;
+    color: white;
+}
+
+.about-content h1 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+/* Contact Page */
+.contact-hero {
+    position: relative;
+    min-height: 100vh;
+    background: url("../images/pexels-mikebirdy-120049.jpg") no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 50px;
+}
+
+.contact-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 80px;
+    z-index: 16;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.contact-box {
+    flex: 1;
+    background: rgba(0,0,0,0.6);
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    font-size: 120%;
+}
+
+.contact-box h2 {
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.message-box {
+    width: 80%;
+    background: rgba(0,0,0,0.6);
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    z-index: 1;
+    margin-bottom: 30px;
+}
+
+.message-box h2 {
+    margin-bottom: 15px;
+}
+
+.message-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message-box input,
+.message-box textarea {
+    width: 60%;
+    max-width: 400px;
+    margin: 0 auto;
+    display: block;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+}
+
+.social-icon {
+    width: 40px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+
+/* Login Page */
+.login-hero {
+    position: relative;
+    height: 100vh;
+    background: url("../images/pexels-mikebirdy-120049.jpg") no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-box {
+    position: relative;
+    z-index: 1;
+    background: rgba(0,0,0,0.6);
+    padding: 30px;
+    border-radius: 15px;
+    width: 400px;
+    text-align: center;
+    color: white;
+}
+
+.login-box h1 {
+    margin-bottom: 20px;
+}
+
+.login-box form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.login-box input {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    width: 100%;
+    text-align: center;
+}
+
+.login-box .btn {
+    width: 120px;
+    margin: 10px auto;
+}
+
+.forgot {
+    font-size: 0.9rem;
+    color: #ccc;
+    text-decoration: none;
+}
+
+.forgot:hover {
+    text-decoration: underline;
+}
+
+.register-link {
+    margin-top: 15px;
+    font-size: 0.95rem;
+}
+
+.register-link a {
+    color: #4da6ff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+
+/* Recommend Page */
+.recommend-hero {
+    position: relative;
+    min-height: 100vh;
+    background: url("../images/pexels-mikebirdy-120049.jpg") no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 60px 0;
+}
+
+.recommend-container {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    width: 90%;
+    flex-wrap: wrap;
+}
+
+.recommend-box {
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
+    background: rgba(0,0,0,0.7);
+    padding: 20px;
+    border-radius: 15px;
+    color: white;
+    text-align: center;
+}
+
+.recommend-box h2 {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+    color: #fff;
+}
+
+.recommend-box img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+
+.recommend-box h3 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.recommend-box p {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    text-align: left;
+}
+
+.more-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #4da6ff;
+    font-weight: bold;
+    text-decoration: none;
+}
+.more-link:hover {
+    text-decoration: underline;
+}
+
+/* Upload Page */
+.upload-hero {
+    position: relative;
+    min-height: 100vh;
+    background: url("../images/pexels-mikebirdy-120049.jpg") no-repeat center center/cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.upload-box {
+    position: relative;
+    z-index: 1;
+    background: rgba(0,0,0,0.7);
+    padding: 30px;
+    border-radius: 15px;
+    width: 600px;
+    color: white;
+    text-align: center;
+}
+
+.upload-box h2 {
+    margin-bottom: 10px;
+}
+
+.drag-area {
+    margin: 20px 0;
+    padding: 40px;
+    border: 2px dashed #4da6ff;
+    border-radius: 10px;
+    background: rgba(0, 100, 200, 0.3);
+    color: white;
+}
+
+.drag-area a {
+    color: #4da6ff;
+    text-decoration: underline;
+}
+
+.preview {
+    margin: 20px 0;
+    position: relative;
+    display: inline-block;
+}
+
+.preview img {
+    width: 200px;
+    border-radius: 8px;
+}
+
+.cancel-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    font-size: 16px;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.upload-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.upload-actions .btn {
+    padding: 10px 20px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    background: white;
+    color: black;
+    font-weight: bold;
+}
+
+/* ===== Specification Page ===== */
+.spec-hero {
+  position: relative;
+  min-height: 100vh;
+  background: url("../images/pexels-mikebirdy-120049.jpg") no-repeat center/cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 70px 0 40px;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  margin: 0;
+  padding: 6;
+  font-family: Arial, sans-serif;
+}
+
+.spec-hero--lower { padding-top: 30px; }
+
+.spec-top {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.spec-top h1 { margin: 0 0 8px; }
+.vehicle-name {
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.card {
+  position: relative;
+  z-index: 1;
+  background: rgba(0,0,0,0.68);
+  padding: 24px;
+  border-radius: 18px;
+  width: min(1050px, 92%);
+}
+
+.spec-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+}
+
+.spec-col h3 {
+  color: #fff;
+  margin-bottom: 12px;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.spec-list {
+  list-style: disc;
+  padding-left: 20px;
+  color: #fff;
+  line-height: 1.55;
+  text-align: left;
+  margin: 0;
+  padding-left: 20px;
+}
+
+.more-wrap {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  margin: 16px 0 8px;
+}
+.more-link {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+.down-arrow {
+  display: inline-block;
+  font-size: 1.6rem;
+  color: #cfe6ff;
+  text-decoration: none;
+  animation: bounce 1.6s infinite;
+}
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
+}
+/* Grid for Specification */
+.spec-grid, .spec-bottom-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.spec-col {
+  text-align: left;
+}
+
+/* Similar Vehicles Section */
+.similar-vehicles {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.vehicle-card {
+  background: rgba(255,255,255,0.1);
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+.vehicle-card img {
+  width: 100%;
+  max-width: 220px;
+  height: auto;
+  border-radius: 10px;
+}
+
+.vehicle-card p {
+  margin-top: 5px;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* Prevent Full Width Expansion */
+.card img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+
+/*My Vehicles Page*/
+
+/* Background Setup */
+body {
+  background: url("../images/pexels-mikebirdy-120049.jpg") no-repeat center center fixed;
+  background-size: cover;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #fff;
+}
+
+/* Container */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  padding-top: 100px;
+}
+
+/* Card Styling */
+.card {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 900px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.7);
+  text-align: center;
+}
+
+/* Title */
+.card h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #fff;
+}
+
+/* Vehicle List */
+.vehicle-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.vehicle-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(0, 102, 204, 0.9);
+  margin: 10px 0;
+  padding: 12px 20px;
+  border-radius: 30px;
+  font-size: 18px;
+  transition: background 0.3s ease;
+}
+
+.vehicle-list li:hover {
+  background: rgba(0, 102, 204, 1);
+}
+
+/* Text Inside List */
+.vehicle-list li span {
+  flex: 1;
+  text-align: left;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Buttons */
+.vehicle-list li a {
+  margin-left: 15px;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.vehicle-list li a.reanalyze {
+  background: #fff;
+  color: #004aad;
+}
+
+.vehicle-list li a.reanalyze:hover {
+  background: #004aad;
+  color: #fff;
+}
+
+.vehicle-list li a.delete {
+  background: #ff0000;
+  color: #fff;
+}
+
+.vehicle-list li a.delete:hover {
+  background: #cc0000;
+}
+
+/* Similar Vehicles – force readable, high-contrast pills */
+.similar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.similar-pill {
+  background: rgba(255, 255, 255, 0.98) !important;   /* light pill */
+  color: #111 !important;                               /* dark text */
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 9999px;
+  padding: 10px 16px;
+  font-weight: 600;
+  line-height: 1.2;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+  opacity: 1 !important;                                /* kill any inherited opacity */
+}
+
+/* Optional: hover feedback */
+.similar-pill:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.16);
+}
+
+/* ===== Vehicle Library Grid ===== */
+.vehicle-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 16px;
+}
+
+.vehicle-card {
+  position: relative;
+  display: block;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transform: translateZ(0);
+  transition: transform .15s ease, box-shadow .15s ease;
+  text-decoration: none;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+}
+
+.vehicle-card img {
+  display: block;
+  width: 100%;
+  height: 140px;
+  object-fit: cover;
+}
+
+.vehicle-card__label {
+  position: absolute;
+  left: 8px;
+  bottom: 8px;
+  right: 8px;
+  background: rgba(255,255,255,0.95);
+  color: #111;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+}
+
+.muted { opacity: .75; }
+
+/* ===== Vehicle Library Grid (My Vehicles) – overrides & additions ===== */
+
+/* Ensure the main container centers and doesn't collapse */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+/* 4 across on desktop; responsive down to 1 on small screens */
+.vehicle-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  gap: 20px !important;
+  align-items: stretch;
+}
+
+@media (max-width: 1200px) {
+  .vehicle-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 900px) {
+  .vehicle-grid { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+}
+@media (max-width: 560px) {
+  .vehicle-grid { grid-template-columns: 1fr !important; }
+}
+
+/* Dark transparent frame (no white card bg) */
+.vehicle-card {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  background: transparent !important;
+  border: 2px solid rgba(0,0,0,0.55) !important;     /* dark semi-transparent */
+  border-radius: 16px;
+  padding: 6px;                                      /* shows the frame around the image */
+  transition: transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  box-shadow: none !important;
+}
+
+.vehicle-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0,0,0,0.85);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+}
+
+/* Consistent image box; cover different aspect ratios neatly */
+.vehicle-card img {
+  display: block;
+  width: 100%;
+  height: 200px;               /* adjust to taste */
+  object-fit: cover;
+  border-radius: 12px;         /* slightly smaller than card to keep frame visible */
+}
+
+/* Label overlay on the image (dark translucent, readable) */
+.vehicle-card__label {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+
+  background: rgba(0,0,0,0.60);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+/* If any previous styles forced white backgrounds or stack layout, neutralize them */
+.vehicle-card, .vehicle-card * { background-clip: padding-box; }
+
+/* ===== Gallery header (My Vehicles) ===== */
+.library-head {
+  display: flex !important;
+  flex-direction: column !important;   /* stack title + hint */
+  align-items: center !important;      /* center horizontally */
+  text-align: center !important;
+  gap: 6px;
+  margin: 18px 0 18px;
+}
+.page-subtitle {
+  margin: 0;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #e5e7eb;                      /* light grey */
+  opacity: .95;
+}
+
+/* add a little space before the grid just in case */
+.vehicle-grid { margin-top: 8px; }
+
+/* ===== My Vehicles: fixed-size grid & aligned frame ===== */
+
+/* Centered grid: 4 columns of 300px cards (then 3 / 2 / 1 on smaller screens) */
+.vehicle-grid{
+  display: grid !important;
+  grid-template-columns: repeat(4, 300px) !important;  /* fixed card width */
+  justify-content: center;                              /* center the row */
+  gap: 24px !important;
+  align-items: start;
+}
+
+@media (max-width: 1400px){
+  .vehicle-grid{ grid-template-columns: repeat(3, 300px) !important; }
+}
+@media (max-width: 1024px){
+  .vehicle-grid{ grid-template-columns: repeat(2, 300px) !important; }
+}
+@media (max-width: 640px){
+  .vehicle-grid{ grid-template-columns: minmax(0, 92%) !important; }
+}
+
+/* Card: no inner padding; draw the dark transparent frame exactly around the image area */
+.vehicle-card{
+  position: relative;
+  width: 300px;                         /* match grid column width */
+  height: 210px;                        /* total card height (image + label area) */
+  display: block;
+  text-decoration: none;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 18px;
+  overflow: hidden;                      /* keep label & image clipped */
+  transform: translateZ(0);
+}
+
+/* Frame matches the card exactly */
+.vehicle-card::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(0,0,0,.65);
+  border-radius: 18px;
+  pointer-events: none;
+}
+
+/* Image fills the card width. Fixed height keeps all cards identical */
+.vehicle-card img{
+  display: block;
+  width: 100%;
+  height: 180px;                         /* fixed image box height */
+  object-fit: cover;                      /* crop nicely */
+  border-radius: 14px;                    /* smaller than frame to show border */
+}
+
+/* Label sits inside the frame, aligned to image width */
+.vehicle-card__label{
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(0,0,0,.55);
+  color: #fff !important;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1.2;
+  box-shadow: 0 4px 14px rgba(0,0,0,.25);
+}
+
+/* Hover polish */
+.vehicle-card:hover{ transform: translateY(-2px); }
+.vehicle-card:hover::after{ border-color: rgba(0,0,0,.9); }
+
+/* ===== My Vehicles: fixed-size, centered, no-crop images ===== */
+
+/* 4 cards across (fixed width), centered rows */
+.vehicle-grid{
+  display:grid !important;
+  grid-template-columns:repeat(4, 300px) !important;   /* fixed card width */
+  justify-content:center;                               /* center the row */
+  gap:24px !important;
+  align-items:start;
+}
+@media (max-width:1400px){ .vehicle-grid{ grid-template-columns:repeat(3,300px) !important; } }
+@media (max-width:1024px){ .vehicle-grid{ grid-template-columns:repeat(2,300px) !important; } }
+@media (max-width:640px){  .vehicle-grid{ grid-template-columns:minmax(0,92%) !important; } }
+
+/* Card & dark transparent frame */
+.vehicle-card{
+  position:relative;
+  width:300px;
+  height:230px;                       /* total card height (image + label space) */
+  display:block;
+  text-decoration:none;
+  background:transparent !important;
+  border:0 !important;
+  box-shadow:none !important;
+  border-radius:18px;
+  overflow:hidden;                    /* clip image/label to frame */
+}
+.vehicle-card::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  border:2px solid rgba(0,0,0,.65);
+  border-radius:18px;
+  pointer-events:none;
+}
+
+/* IMAGE: show the WHOLE image (no crop), centered */
+.vehicle-card img{
+  display:block;
+  width:100%;
+  height:200px;                       /* fixed image box height */
+  object-fit:contain;                  /* <-- key: no cropping */
+  object-position:center center;       /* center inside the frame */
+  background:rgba(0,0,0,.25);          /* subtle letterbox bars when aspect differs */
+  border-radius:14px;                  /* slightly smaller than frame to show border */
+}
+
+/* Label sits inside the frame, aligned to the image width */
+.vehicle-card__label{
+  position:absolute;
+  left:12px;
+  right:12px;
+  bottom:12px;
+  padding:10px 14px;
+  border-radius:12px;
+  background:rgba(0,0,0,.55);
+  color:#fff !important;
+  font-weight:700;
+  text-align:center;
+  line-height:1.2;
+  box-shadow:0 4px 14px rgba(0,0,0,.25);
+}
+
+/* Hover polish */
+.vehicle-card:hover{ transform:translateY(-2px); }
+.vehicle-card:hover::after{ border-color:rgba(0,0,0,.9); }
+
+/* =========================
+   MY VEHICLES — FINAL CSS
+   ========================= */
+
+/* Optional page header (title + hint) */
+.library-head{
+  display:flex; flex-direction:column; align-items:center; text-align:center;
+  gap:6px; margin:18px 0 18px;
+}
+.library-head .page-title{ margin:0; font-size:1.6rem; font-weight:700; color:#fff; }
+.library-head .page-subtitle{ margin:0; font-size:1rem; font-weight:600; color:#e5e7eb; opacity:.95; }
+
+/* Center the content block */
+.container{ max-width:1280px; margin:0 auto; padding:0 12px; }
+
+/* ---------- GRID ---------- */
+/* 4 fixed-width cards centered; responsive down to 3/2/1 */
+.vehicle-grid{
+  --card-w: 340px;           /* card width */
+  --radius: 18px;            /* corner radius */
+  --gap: 28px;               /* row/col gap */
+
+  display:grid !important;
+  grid-template-columns:repeat(4, var(--card-w)) !important;
+  justify-content:center !important;
+  gap: var(--gap) !important;
+}
+
+@media (max-width: 1400px){
+  .vehicle-grid{ grid-template-columns:repeat(3, var(--card-w)) !important; }
+}
+@media (max-width: 1024px){
+  .vehicle-grid{ grid-template-columns:repeat(2, var(--card-w)) !important; }
+}
+@media (max-width: 640px){
+  .vehicle-grid{ grid-template-columns:minmax(0, 92%) !important; }
+}
+
+/* ---------- CARD ---------- */
+/* The anchor itself is the frame box. We give it a fixed aspect-ratio so
+   every card is the same size. Images are centered and NEVER cropped. */
+.vehicle-card{
+  position:relative !important;
+  width:var(--card-w) !important;
+  aspect-ratio: 16 / 10 !important;      /* uniform frame height */
+  display:grid !important;
+  place-items:center !important;
+  text-decoration:none !important;
+
+  background:rgba(0,0,0,.20) !important; /* subtle letterbox background */
+  border:2px solid rgba(0,0,0,.65) !important;
+  border-radius:var(--radius) !important;
+  overflow:hidden !important;
+  box-shadow:none !important;
+}
+
+/* Smooth hover polish */
+.vehicle-card:hover{
+  transform:translateY(-2px);
+  transition:transform .15s ease, border-color .15s ease, box-shadow .15s ease;
+  border-color:rgba(0,0,0,.9) !important;
+  box-shadow:0 8px 24px rgba(0,0,0,.22);
+}
+
+/* ---------- IMAGE ---------- */
+/* Centered, scaled to fit INSIDE the frame — no cropping */
+.vehicle-card > img{
+  max-width:100% !important;
+  max-height:100% !important;
+  width:auto !important;
+  height:auto !important;
+  object-fit:contain !important;         /* key: show whole image */
+  object-position:center center !important;
+  border-radius:calc(var(--radius) - 4px) !important;
+  display:block !important;
+}
+
+/* ---------- LABEL ---------- */
+.vehicle-card__label{
+  position:absolute !important;
+  left:12px !important;
+  right:12px !important;
+  bottom:12px !important;
+
+  padding:10px 14px !important;
+  border-radius:12px !important;
+  background:rgba(0,0,0,.55) !important;
+  color:#fff !important; font-weight:800 !important;
+  text-align:center !important; line-height:1.2 !important;
+  box-shadow:0 4px 14px rgba(0,0,0,.25) !important;
+}
+
+/* In case any older styles leak in, neutralize them inside the gallery */
+.vehicle-grid .vehicle-card, .vehicle-grid .vehicle-card *{
+  box-sizing:border-box;
+  margin:0; padding:0;
+  background-clip:padding-box;
+}
+.vehicle-grid .vehicle-card::before,
+.vehicle-grid .vehicle-card::after{ content:none; } /* no extra pseudo-layers */
+
+/* Bigger, responsive title for My Vehicles */
+.library-head .page-title{
+  font-size: clamp(2.2rem, 3vw + 0.5rem, 3.2rem); /* grows on larger screens */
+  line-height: 1;
+  font-weight: 1100;
+  letter-spacing: .02em;
+  color: #fff;
+  margin: 0;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.library-head .page-subtitle{
+  font-size: clamp(1rem, 1.2vw + .4rem, 1.3rem);
+  color: #e5e7eb;
+  margin: 0;
+  opacity: .95;
+  font-family: 'Times New Roman', Times, serif;
+}
+/* ensure navbar is flexed */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px; /* keep your existing spacing if you have it */
+}
+
+/* this will push the right-side buttons to the far right */
+.nav-spacer {
+  flex: 1;
+}
+
+/* right-aligned buttons as a group */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* optional: if your .login-btn is already styled you can omit this */
+.nav-right .login-btn {
+  cursor: pointer;
+}

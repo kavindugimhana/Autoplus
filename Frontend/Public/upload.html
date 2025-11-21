@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Vehicle Image - AutoPlus</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    .drag-area { border: 2px dashed #888; padding: 24px; text-align:center; border-radius: 10px; }
+    .drag-area.dragover { border-color:#333; background:#fafafa; }
+    .preview { display:none; position:relative; margin-top:16px; }
+    .preview img { max-width: 100%; height:auto; border-radius:8px; }
+    .cancel-btn { position:absolute; top:6px; right:6px; }
+    .upload-actions { margin-top:16px; display:flex; gap:10px; justify-content:center; }
+    .hidden { display:none; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../public/images/WhatsApp Image 2025-07-26 at 12.23.11_578aa159.jpg" alt="AutoPlus Logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="upload.html" class="active">Upload</a></li>
+        <li><a href="specification.html">Specification</a></li>
+        <li><a href="myvehicles.html">Vehicles</a></li>
+      </ul>
+      <a href="index.html"><button class="login-btn">Logout</button></a>
+    </nav>
+  </header>
+
+  <!-- Upload Section -->
+  <section class="hero upload-hero">
+    <div class="overlay"></div>
+    <div class="upload-box">
+      <h2>Upload the Vehicle Image</h2>
+      <p>Supported Files: JPG, JPEG, PNG, WEBP, AVIF</p>
+
+      <!-- Drag Drop Area -->
+      <div class="drag-area" id="dragArea">
+        <p>Drag & drop or <a href="#" id="browseLink">Browse</a> to choose an image</p>
+        <input
+          id="fileInput"
+          type="file"
+          class="hidden"
+          accept=".jpg,.jpeg,.png,.webp,.avif,image/*"
+        />
+      </div>
+
+      <!-- Preview Image -->
+      <div class="preview" id="previewWrap">
+        <img id="previewImg" alt="Car Preview">
+        <button class="cancel-btn" id="cancelBtn" title="Remove">✖</button>
+      </div>
+
+      <!-- Buttons -->
+      <div class="upload-actions">
+        <button class="btn" id="uploadBtn" disabled>Upload</button>
+        <button class="btn" id="resetBtn">Cancel</button>
+      </div>
+
+      <p id="statusMsg" style="text-align:center;margin-top:10px;"></p>
+    </div>
+  </section>
+
+  <script>
+    // === CONFIG: point this to your backend ===
+    const API_BASE = "http://127.0.0.1:5000";  // Flask default
+
+    const dragArea   = document.getElementById('dragArea');
+    const browseLink = document.getElementById('browseLink');
+    const fileInput  = document.getElementById('fileInput');
+    const previewWrap= document.getElementById('previewWrap');
+    const previewImg = document.getElementById('previewImg');
+    const cancelBtn  = document.getElementById('cancelBtn');
+    const uploadBtn  = document.getElementById('uploadBtn');
+    const resetBtn   = document.getElementById('resetBtn');
+    const statusMsg  = document.getElementById('statusMsg');
+
+    let selectedFile = null;
+
+    function setStatus(msg, isError=false) {
+      statusMsg.textContent = msg || "";
+      statusMsg.style.color = isError ? "crimson" : "inherit";
+    }
+
+    function showPreview(file) {
+      const url = URL.createObjectURL(file);
+      previewImg.src = url;
+      previewWrap.style.display = "block";
+      uploadBtn.disabled = false;
+      setStatus("");
+    }
+
+    function clearSelection() {
+      fileInput.value = "";
+      selectedFile = null;
+      previewImg.src = "";
+      previewWrap.style.display = "none";
+      uploadBtn.disabled = true;
+      setStatus("");
+    }
+
+    // Browse
+    browseLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      fileInput.click();
+    });
+
+    fileInput.addEventListener('change', (e) => {
+      const file = e.target.files?.[0];
+      if (!file) return;
+      if (!/\.(jpe?g|png|webp|avif)$/i.test(file.name)) {
+        setStatus("Unsupported file type. Please choose JPG, JPEG, PNG, WEBP, or AVIF.", true);
+        return;
+      }
+      selectedFile = file;
+      showPreview(file);
+    });
+
+    // Drag & Drop
+    ;['dragenter','dragover'].forEach(evt =>
+      dragArea.addEventListener(evt, e => {
+        e.preventDefault(); e.stopPropagation();
+        dragArea.classList.add('dragover');
+      })
+    );
+    ;['dragleave','drop'].forEach(evt =>
+      dragArea.addEventListener(evt, e => {
+        e.preventDefault(); e.stopPropagation();
+        dragArea.classList.remove('dragover');
+      })
+    );
+    dragArea.addEventListener('drop', (e) => {
+      const file = e.dataTransfer.files?.[0];
+      if (!file) return;
+      if (!/\.(jpe?g|png|webp|avif)$/i.test(file.name)) {
+        setStatus("Unsupported file type. Please choose JPG, JPEG, PNG, WEBP, or AVIF.", true);
+        return;
+      }
+      selectedFile = file;
+      showPreview(file);
+    });
+
+    // Cancel preview
+    cancelBtn.addEventListener('click', () => clearSelection());
+    resetBtn.addEventListener('click', () => clearSelection());
+
+    // Upload
+    uploadBtn.addEventListener('click', async () => {
+      if (!selectedFile) {
+        setStatus("Please select an image first.", true);
+        return;
+      }
+      try {
+        setStatus("Uploading...");
+        const formData = new FormData();
+        formData.append("image", selectedFile);
+
+        const res = await fetch(`${API_BASE}/upload`, {
+          method: "POST",
+          body: formData
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error(data?.error || "Upload failed");
+        }
+
+        // Save the result for the results page and navigate
+        sessionStorage.setItem("autoplus_result", JSON.stringify(data));
+        window.location.href = "specification.html";
+      } catch (err) {
+        console.error(err);
+        setStatus(err.message || "Upload failed", true);
+      }
+    });
+  </script>
+</body>
+</html>

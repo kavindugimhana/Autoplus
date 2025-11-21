@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Specification - AutoPlus</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .muted { opacity: .75; }
+    .similar-list { display: grid; gap: 8px; }
+    .similar-pill {
+      display: inline-block; padding: 6px 10px; border-radius: 16px;
+      border: 1px solid #ddd; background: #f9f9f9; font-size: 0.95rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../public/images/WhatsApp Image 2025-07-26 at 12.23.11_578aa159.jpg" alt="AutoPlus Logo" />
+      </div>
+      <ul class="nav-links">
+        <li><a href="upload.html">Upload</a></li>
+        <li><a href="specification.html" class="active">Specification</a></li>
+        <li><a href="myvehicles.html">Vehicles</a></li>
+      </ul>
+      <a href="index.html"><button class="login-btn">Logout</button></a>
+    </nav>
+  </header>
+
+  <!-- ====== Section 1: Recognised Vehicle + Specs & Errors ====== -->
+  <section class="hero spec-hero">
+    <div class="overlay"></div>
+
+    <div class="spec-top">
+      <h1>Recognised Vehicle</h1>
+      <h2 class="vehicle-name" id="vehicleName" title="Predicted label">—</h2>
+      <p class="muted" id="hint">(tip: upload an image first if this is blank)</p>
+    </div>
+
+    <div class="spec-grid card">
+      <!-- Vehicle Specification -->
+      <div class="spec-col">
+        <h3>Vehicle Specification</h3>
+        <ul class="spec-list" id="specList"></ul>
+      </div>
+
+      <!-- Common Errors -->
+      <div class="spec-col">
+        <h3>Common Errors Detection</h3>
+        <ul class="spec-list" id="errorsList"></ul>
+      </div>
+    </div>
+
+    <!-- More Specification anchor -->
+    <div class="more-wrap">
+      <a href="#more" class="more-link">More Specification</a>
+      <a href="#more" class="down-arrow">▼</a>
+    </div>
+  </section>
+
+  <!-- ====== Section 2: Market Price + Similar Vehicles ====== -->
+  <section id="more" class="hero spec-hero spec-hero--lower">
+    <div class="overlay"></div>
+
+    <div class="spec-grid card">
+      <!-- Market Price -->
+      <div class="spec-col">
+        <h3>Market Price</h3>
+        <ul class="spec-list" id="priceList"></ul>
+      </div>
+
+      <!-- Similar Vehicles (TEXT ONLY) -->
+      <div class="spec-col">
+        <h3>Similar Vehicles</h3>
+        <div class="similar-list" id="similarList"></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const raw = sessionStorage.getItem("autoplus_result");
+    const vehicleNameEl = document.getElementById("vehicleName");
+    const specListEl    = document.getElementById("specList");
+    const errorsListEl  = document.getElementById("errorsList");
+    const priceListEl   = document.getElementById("priceList");
+    const similarListEl = document.getElementById("similarList");
+    const hintEl        = document.getElementById("hint");
+
+    function liKV(label, value) {
+      const li = document.createElement("li");
+      li.innerHTML = `<b>${label}:</b> ${value}`;
+      return li;
+    }
+    function liText(text) {
+      const li = document.createElement("li");
+      li.textContent = text;
+      return li;
+    }
+    function safe(v, fallback="Unknown") {
+      if (v === undefined || v === null || String(v).trim() === "") return fallback;
+      return v;
+    }
+
+    // Renders a key/value dictionary into <ul>
+    function renderKVList(ul, dict, fallbackText) {
+      ul.innerHTML = "";
+      const keys = Object.keys(dict || {});
+      if (!keys.length) {
+        ul.appendChild(liText(fallbackText || "No data"));
+        return;
+      }
+      keys.forEach(k => ul.appendChild(liKV(k, safe(dict[k]))));
+    }
+
+    // Renders an array of strings into <ul>
+    function renderList(ul, arr, fallbackText) {
+      ul.innerHTML = "";
+      if (!arr || !arr.length) {
+        ul.appendChild(liText(fallbackText || "No data"));
+        return;
+      }
+      arr.forEach(item => ul.appendChild(liText(item)));
+    }
+
+    // Renders array of strings as label “pills”
+    function renderPills(container, arr, fallbackText) {
+      container.innerHTML = "";
+      if (!arr || !arr.length) {
+        const p = document.createElement("p");
+        p.className = "muted";
+        p.textContent = fallbackText || "No similar vehicles";
+        container.appendChild(p);
+        return;
+      }
+      arr.forEach(name => {
+        const span = document.createElement("span");
+        span.className = "similar-pill";
+        span.textContent = name;
+        container.appendChild(span);
+      });
+    }
+
+    try {
+      if (!raw) throw new Error("No result found");
+      const data = JSON.parse(raw); // shape produced by backend
+
+      const predicted = data?.predicted_label || "—";
+      const info      = data?.car_info || {};
+      const spec      = data?.spec || {};
+      const errors    = data?.common_errors || [];
+      const prices    = data?.market_price || {};
+      const similar   = data?.similar || [];
+
+      vehicleNameEl.textContent = predicted;
+      hintEl.style.display = "none";
+
+      // === SPEC (prefer structured 'spec', fallback to a few keys from car_info) ===
+      if (Object.keys(spec).length) {
+        renderKVList(specListEl, spec, "No specs available");
+      } else {
+        const fallbackSpec = {
+          "Model": info.Model ?? predicted,
+          "Year": info.Year,
+          "Hybrid": info.Hybrid
+        };
+        renderKVList(specListEl, fallbackSpec, "No specs available");
+      }
+
+      // === COMMON ERRORS ===
+      renderList(errorsListEl, errors, "No common errors data");
+
+      // === MARKET PRICE ===
+      if (Object.keys(prices).length) {
+        renderKVList(priceListEl, prices, "No price data");
+      } else {
+        // fallback to a single Estimated Price if present
+        const single = info.Price || info["Market Price"] || info["Estimated Price"];
+        priceListEl.innerHTML = "";
+        priceListEl.appendChild(liKV("Estimated Price", safe(single)));
+      }
+
+      // === SIMILAR VEHICLES (TEXT ONLY) ===
+      renderPills(similarListEl, similar, "No similar vehicles");
+
+    } catch (e) {
+      console.warn(e);
+      vehicleNameEl.textContent = "—";
+      hintEl.style.display = "block";
+      specListEl.innerHTML   = `<li class="muted">No data yet. Go to <a href="upload.html">Upload</a> and analyze an image.</li>`;
+      errorsListEl.innerHTML = `<li class="muted">No common errors data.</li>`;
+      priceListEl.innerHTML  = `<li class="muted">No price data.</li>`;
+      similarListEl.innerHTML = `<p class="muted">No similar vehicles</p>`;
+    }
+  </script>
+</body>
+</html>

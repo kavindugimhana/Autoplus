@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vehicles - AUTOPLUS</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <style>
+    .library-wrap { padding: 24px; }
+    .library-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+    .library-head h2 { margin:0; }
+    .muted { opacity:.75; }
+
+    /* overlay while analyzing */
+    .busy-overlay{
+      position:absolute; inset:0; display:flex; flex-direction:column;
+      align-items:center; justify-content:center;
+      background:rgba(0,0,0,.55); color:#fff; gap:10px;
+      font-weight:700; z-index:5;
+    }
+    .busy-overlay .spinner{
+      width:26px; height:26px; border-radius:50%;
+      border:3px solid rgba(255,255,255,.35);
+      border-top-color:#fff; animation:spin .8s linear infinite;
+    }
+    @keyframes spin { to { transform:rotate(360deg);} }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../public/images/WhatsApp Image 2025-07-26 at 12.23.11_578aa159.jpg" alt="AutoPlus Logo">
+      </div>
+      <ul class="nav-links">
+        <li><a href="upload.html">Upload</a></li>
+        <li><a href="specification.html">Specification</a></li>
+        <li><a href="myvehicles.html" class="active">Vehicles</a></li>
+        <li></li><a href="users.html">Users</a></li>
+      </ul>
+      <a href="index.html"><button class="login-btn">Logout</button></a>
+    </nav>
+  </header>
+
+  <!-- Page title -->
+  <div class="library-head">
+    <h2 class="page-subtitle">PICK ANY IMAGE TO ANALYZE IT</h2>
+  </div>
+
+  <!-- Image cards -->
+  <div class="vehicle-grid">
+    <!-- keep your existing cards and filenames; a few shown as examples -->
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/PriusN.webp" aria-label="Use Toyota Prius">
+        <img src="../public/images/PriusN.webp" alt="Toyota Prius" loading="lazy">
+        <div class="vehicle-card__label">Toyota Prius</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Fit.jpg" aria-label="Use Honda Fit">
+        <img src="../public/images/Fit.jpg" alt="Honda Fit" loading="lazy">
+        <div class="vehicle-card__label">Honda Fit</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/VS60.jpg" aria-label="Use Volvo S60">
+        <img src="../public/images/VS60.jpg" alt="Volvo S60" loading="lazy">
+        <div class="vehicle-card__label">Volvo S60</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Alto.avif" aria-label="Use Suzuki Alto">
+        <img src="../public/images/Alto.avif" alt="Suzuki Alto" loading="lazy">
+        <div class="vehicle-card__label">Suzuki Alto</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Audi A3 2018.webp" aria-label="Use Audi A3">
+        <img src="../public/images/Audi A3 2018.webp" alt="Audi A3" loading="lazy">
+        <div class="vehicle-card__label">Audi A3</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/MBCA.jpg" aria-label="Use Mercedes-Benz A-Class">
+        <img src="../public/images/MBCA.jpg" alt="Mercedes-Benz A-Class" loading="lazy">
+        <div class="vehicle-card__label">Mercedes-Benz A-Class</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Ford Ranger.webp" aria-label="Use Ford Ranger">
+        <img src="../public/images/Ford Ranger.webp" alt="Ford Ranger" loading="lazy">
+        <div class="vehicle-card__label">Ford Ranger</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Chevrolet Equinox 2022.webp" aria-label="Use Chevrolet Equinox">
+        <img src="../public/images/Chevrolet Equinox 2022.webp" alt="Chevrolet Equinox" loading="lazy">
+        <div class="vehicle-card__label">Chevrolet Equinox</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Porsche Cayman 2018.webp" aria-label="Use Porsche Cayman">
+        <img src="../public/images/Porsche Cayman 2018.webp" alt="Porsche Cayman" loading="lazy">
+        <div class="vehicle-card__label">Porsche Cayman</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Land Rover Range Rover Sport 2018.avif" aria-label="Use Land Rover Range Rover Sport">
+        <img src="../public/images/Land Rover Range Rover Sport 2018.avif" alt="Land Rover Range Rover Sport" loading="lazy">
+        <div class="vehicle-card__label">Land Rover Range Rover Sport</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Corolla.jpeg" aria-label="Use Toyota Corolla">
+        <img src="../public/images/Corolla.jpeg" alt="Toyota Corolla" loading="lazy">
+        <div class="vehicle-card__label">Toyota Corolla</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Civic.webp" aria-label="Use Honda Civic">
+        <img src="../public/images/Civic.webp" alt="Honda Civic" loading="lazy">
+        <div class="vehicle-card__label">Honda Civic</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Nissan GT-R 2015.jpg" aria-label="Use Nissan GT-R">
+        <img src="../public/images/Nissan GT-R 2015.jpg" alt="Nissan GT-R" loading="lazy">
+        <div class="vehicle-card__label">Nissan GT-R</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Mazda CX-5 2015.webp" aria-label="Use Mazda CX-5">
+        <img src="../public/images/Mazda CX-5 2015.webp" alt="Mazda CX-5" loading="lazy">
+        <div class="vehicle-card__label">Mazda CX-5</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Yaris Cross.webp" aria-label="Use Toyota Yaris Cross">
+        <img src="../public/images/Yaris Cross.webp" alt="Toyota Yaris Cross" loading="lazy">
+        <div class="vehicle-card__label">Toyota Yaris Cross</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/X1.avif" aria-label="Use BMW X1">
+        <img src="../public/images/X1.avif" alt="BMW X1" loading="lazy">
+        <div class="vehicle-card__label">BMW X1</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Jeep Wrangler.avif" aria-label="Use Jeep Wrangler">
+        <img src="../public/images/Jeep Wrangler.avif" alt="Jeep Wrangler" loading="lazy">
+        <div class="vehicle-card__label">Jeep Wrangler</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Land Rover Discovery 2020.jpeg" aria-label="Use Land Rover Discovery">
+        <img src="../public/images/Land Rover Discovery 2020.jpeg" alt="Land Rover Discovery" loading="lazy">
+        <div class="vehicle-card__label">Land Rover Discovery</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/TMS.avif" aria-label="Use Tesla Model S">
+        <img src="../public/images/TMS.avif" alt="Tesla Model S" loading="lazy">
+        <div class="vehicle-card__label">Tesla Model S</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Nissan Leaf 2014.jpg" aria-label="Use Nissan Leaf">
+        <img src="../public/images/Nissan Leaf 2014.jpg" alt="Nissan Leaf" loading="lazy">
+        <div class="vehicle-card__label">Nissan Leaf</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Subaru BRZ 2014.webp" aria-label="Use Nissan Leaf">
+        <img src="../public/images/Subaru BRZ 2014.webp" alt="Subaru BRZ" loading="lazy">
+        <div class="vehicle-card__label">Subaru BRZ</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Chevrolet Silverado 2013.avif" aria-label="Use Nissan Leaf">
+        <img src="../public/images/Chevrolet Silverado 2013.avif" alt="Chevrolet Silverado" loading="lazy">
+        <div class="vehicle-card__label">Chevrolet Silverado</div>
+      </a>
+
+      <a class="vehicle-card" href="upload.html" data-image="../public/images/Stingrey.jpg" aria-label="Use Nissan Leaf">
+        <img src="../public/images/Stingrey.jpg" alt="Suzuki Stingrey" loading="lazy">
+        <div class="vehicle-card__label">Suzuki Stingrey</div>
+      </a>
+    </a>
+    
+    <a class="vehicle-card" href="upload.html" data-image="../public/images/Stingrey.jpg" aria-label="Use Nissan Leaf">
+        <img src="../public/images/Stingrey.jpg" alt="Suzuki Stingrey" loading="lazy">
+        <div class="vehicle-card__label">Suzuki Stingrey</div>
+      </a>
+    </a>
+
+    <a class="vehicle-card" href="upload.html" data-image="../public/images/Volkswagen Touareg 2024.jpg" aria-label="Use Nissan Leaf">
+        <img src="../public/images/Volkswagen Touareg 2024.jpg" alt="Volkswagen Touareg 2024" loading="lazy">
+        <div class="vehicle-card__label">Volkswagen Touareg 2024</div>
+      </a>
+    </a>
+
+    <!-- … keep the rest of your cards exactly as you have them … -->
+  </div>
+
+  <script>
+    // === Back-end API base ===
+    const API_BASE = "http://127.0.0.1:5000";
+
+    // helper to show/hide a small “analyzing” overlay on a card
+    function showBusy(card){
+      if (card.querySelector('.busy-overlay')) return;
+      const ov = document.createElement('div');
+      ov.className = 'busy-overlay';
+      ov.innerHTML = '<div class="spinner"></div><span>Analyzing…</span>';
+      card.appendChild(ov);
+    }
+    function hideBusy(card){
+      const ov = card.querySelector('.busy-overlay'); if (ov) ov.remove();
+    }
+
+    // Convert whatever was in data-image (../public/..., /public/...) to an absolute URL
+    function toAbsoluteUrl(rawPath){
+      return new URL(rawPath, window.location.href).href;
+    }
+
+    // Click handler: fetch image -> POST to backend -> save result -> go to spec
+    document.querySelectorAll(".vehicle-card").forEach(card => {
+      card.addEventListener("click", async (e) => {
+        e.preventDefault();                     // stop default navigation
+        const raw = card.getAttribute("data-image");
+        if (!raw) return;
+        const absUrl = toAbsoluteUrl(raw);
+
+        try {
+          showBusy(card);
+
+          // 1) fetch the image bytes from your public folder
+          const imgRes = await fetch(absUrl, { cache: "no-store" });
+          if (!imgRes.ok) throw new Error("Image not found: " + absUrl);
+          const blob = await imgRes.blob();
+
+          // 2) build a File so /upload receives a real file
+          const fileName = decodeURIComponent(absUrl.split('/').pop() || 'vehicle.jpg');
+          const file = new File([blob], fileName, { type: blob.type || 'image/jpeg' });
+
+          // 3) POST to backend /upload
+          const fd = new FormData();
+          fd.append("image", file);
+
+          const res = await fetch(`${API_BASE}/upload`, { method: "POST", body: fd });
+          const data = await res.json();
+          if (!res.ok) throw new Error(data?.error || "Backend error");
+
+          // 4) store and navigate
+          sessionStorage.setItem("autoplus_result", JSON.stringify(data));
+          window.location.href = "specification.html";
+
+        } catch (err) {
+          console.error(err);
+          hideBusy(card);
+          alert("Could not analyze this image.\n" + (err.message || err));
+        }
+      });
+    });
+  </script>
+</body>
+</html>

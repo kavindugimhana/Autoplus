@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - AutoPlus</title>
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- Minimal page-scoped styles for the eye button -->
+  <style>
+    .input-wrap{ position:relative; }
+    .input-wrap input{ padding-right:44px; } /* space for the eye */
+    .toggle-pass{
+      position:absolute; right:10px; top:50%; transform:translateY(-50%);
+      background:transparent; border:0; padding:4px; cursor:pointer;
+      color:#9ca3af; /* muted */
+    }
+    .toggle-pass:focus{ outline:2px solid #4f46e5; outline-offset:2px; border-radius:8px; }
+    .toggle-pass .icon{ width:22px; height:22px; display:block; }
+    .toggle-pass .eye-off{ display:none; }
+    .toggle-pass.on{ color:#ffffff; }             /* when visible */
+    .toggle-pass.on .eye{ display:none; }
+    .toggle-pass.on .eye-off{ display:block; }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="../public/images/WhatsApp Image 2025-07-26 at 12.23.11_578aa159.jpg" alt="AutoPulse Logo">
+      </div>
+      <ul class="nav-links"></ul>
+      <a href="index.html"><button class="login-btn">Home</button></a>
+    </nav>
+  </header>
+
+  <!-- Login Section -->
+  <section class="hero login-hero">
+    <div class="overlay"></div>
+    <div class="login-box">
+      <h1>Login to AUTOPLUS</h1>
+
+      <!-- Proper Login Form -->
+      <form action="upload.html" method="POST">
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Your Username" required>
+
+        <label>Password</label>
+        <div class="input-wrap">
+          <input type="password" id="password" name="password" placeholder="Your Password" required>
+          <!-- Eye button -->
+          <button type="button" class="toggle-pass" id="togglePass"
+                  aria-label="Show password" aria-pressed="false">
+            <!-- eye (open) -->
+            <svg class="icon eye" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7Z"/>
+              <circle cx="12" cy="12" r="3"/>
+            </svg>
+            <!-- eye-off -->
+            <svg class="icon eye-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.78 21.78 0 0 1 5.06-6.94"/>
+              <path d="M1 1l22 22"/>
+              <path d="M10.58 10.58a3 3 0 1 0 4.24 4.24"/>
+              <path d="M9.88 4.12A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.9 21.9 0 0 1-3.49 4.75"/>
+            </svg>
+          </button>
+        </div>
+
+        <a href="#" class="forgot">Forgot Password ?</a>
+
+        <button type="submit" class="btn">Login</button>
+      </form>
+
+      <p class="register-link">
+        New to AutoPlus ? <a href="register.html">Register</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- Tiny script to toggle visibility -->
+<script>
+  const API_BASE = "http://127.0.0.1:5000";
+
+  // eye toggle (keep)
+  const pass   = document.getElementById('password');
+  const toggle = document.getElementById('togglePass');
+  toggle.addEventListener('click', () => {
+    const showing = pass.type === 'text';
+    pass.type = showing ? 'password' : 'text';
+    toggle.classList.toggle('on', !showing);
+    toggle.setAttribute('aria-pressed', String(!showing));
+    toggle.setAttribute('aria-label', showing ? 'Show password' : 'Hide password');
+  });
+
+  // Hook the form submit -> POST /api/auth/login
+  const form = document.querySelector('form');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = form.elements['username'].value.trim();   // using "username" as email
+    const password = form.elements['password'].value;
+
+    try {
+      const res = await fetch(`${API_BASE}/api/auth/login`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.ok) throw new Error(data.error || 'Login failed');
+
+      // Save auth for later pages
+      localStorage.setItem('autoplus_token', data.token);
+      localStorage.setItem('autoplus_user', JSON.stringify(data.user));
+
+      // Go to Upload (or My Vehicles)
+      window.location.href = 'upload.html';
+    } catch (err) {
+      alert(err.message || 'Login failed');
+    }
+  });
+</script>
+</body>
+</html>
